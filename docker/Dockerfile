@@ -10,9 +10,9 @@ ENV AUTHTOKEN ""
 
 VOLUME /etc/ssl
 
-COPY ../bin/ngrokd /usr/local/bin/
-COPY ../assets/server/tls/ /usr/local/src/ssl/
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY bin/ngrokd /usr/local/bin/
+COPY assets/server/tls/ /usr/local/src/ssl/
+COPY docker/docker-entrypoint.sh /usr/local/bin/
 
 RUN chmod +x  /usr/local/bin/ngrokd
 RUN chmod +x  /usr/local/bin/docker-entrypoint.sh
