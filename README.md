@@ -49,7 +49,8 @@ Go version >= 1.11
 
 - 服务端增加启动参数authtoken进行连接认证，避免陌生人使用你的代理服务。  
   - 服务端启动如：```./ngrokd -domain=ngrok.xxx.com -authtoken=123456```  
-  - 客户端配置文件增加参数：  ```auth_token: 123456```
+  - 客户端配置文件增加参数：  ```auth_token: 123456```  
+  
     ```
     server_addr: ngrok.xxx.com:4443
     trust_host_root_certs: true
@@ -71,8 +72,8 @@ Go version >= 1.11
 
 ## Docker
 
-1. 使用已经编译好的docker镜像，具体使用参数详见docker hub仓库。  
+- 使用已经编译好的docker镜像，具体使用参数详见docker hub仓库。  
 [docker镜像仓库](https://hub.docker.com/r/misu999/ngrokd)
 
-2. 如需手动编译docker镜像，请进入docker目录，使用Dockerfile或者docker-compose.yml进行编译。  
+- 如需手动编译docker镜像，请进入docker目录，使用Dockerfile或者docker-compose.yml进行编译。  
 推荐使用docker-compose编排工具。
