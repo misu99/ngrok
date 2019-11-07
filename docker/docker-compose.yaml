@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  ngrokd:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ngrokd:latest
+    container_name: ngrokd
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+      - "4443:4443"
+    environment:
+      - DOMAIN=ngrok.xxx.com
+      - AUTHTOKEN=123456
+      - TLSKEY=/etc/ssl/private.key
+      - TLSCRT=/etc/ssl/certificate.crt
+      - HTTPADDR=80
+      - HTTPSADDR=443
+      - TUNNELADDR=4443
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /data/ngrok/ssl:/etc/ssl
