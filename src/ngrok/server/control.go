@@ -60,7 +60,7 @@ type Control struct {
 	shutdown *util.Shutdown
 }
 
-func NewControl(ctlConn conn.Conn, authMsg *msg.Auth) {
+func NewControl(ctlConn conn.Conn, authMsg *msg.Auth, authToken string) {
 	var err error
 
 	// create the object
@@ -90,6 +90,11 @@ func NewControl(ctlConn conn.Conn, authMsg *msg.Auth) {
 			failAuth(err)
 			return
 		}
+	}
+
+	if authToken != "" && authMsg.User != authToken {
+		failAuth(fmt.Errorf("authtoken %s invalid", authMsg.User))
+		return
 	}
 
 	// set logging prefix

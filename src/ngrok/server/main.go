@@ -55,7 +55,8 @@ func NewProxy(pxyConn conn.Conn, regPxy *msg.RegProxy) {
 // for ease of deployment. The hope is that by running on port 443, using
 // TLS and running all connections over the same port, we can bust through
 // restrictive firewalls.
-func tunnelListener(addr string, tlsConfig *tls.Config) {
+//func tunnelListener(addr string, tlsConfig *tls.Config) {
+func tunnelListener(addr, authToken string, tlsConfig *tls.Config) {
 	// listen for incoming connections
 	listener, err := conn.Listen(addr, "tun", tlsConfig)
 	if err != nil {
@@ -64,7 +65,8 @@ func tunnelListener(addr string, tlsConfig *tls.Config) {
 
 	log.Info("Listening for control and proxy connections on %s", listener.Addr.String())
 	for c := range listener.Conns {
-		go func(tunnelConn conn.Conn) {
+		//go func(tunnelConn conn.Conn) {
+		go func(tunnelConn conn.Conn, authToken string) {
 			// don't crash on panics
 			defer func() {
 				if r := recover(); r != nil {
@@ -86,7 +88,8 @@ func tunnelListener(addr string, tlsConfig *tls.Config) {
 
 			switch m := rawMsg.(type) {
 			case *msg.Auth:
-				NewControl(tunnelConn, m)
+				//NewControl(tunnelConn, m)
+				NewControl(tunnelConn, m, authToken)
 
 			case *msg.RegProxy:
 				NewProxy(tunnelConn, m)
@@ -94,7 +97,8 @@ func tunnelListener(addr string, tlsConfig *tls.Config) {
 			default:
 				tunnelConn.Close()
 			}
-		}(c)
+		//}(c)
+		}(c, authToken)
 	}
 }
 
@@ -104,6 +108,8 @@ func Main() {
 
 	// init logging
 	log.LogTo(opts.logto, opts.loglevel)
+
+	log.Debug("authtoken: " + opts.authtoken)
 
 	// seed random number generator
 	seed, err := util.RandomSeed()
@@ -137,5 +143,6 @@ func Main() {
 	}
 
 	// ngrok clients
-	tunnelListener(opts.tunnelAddr, tlsConfig)
+	//tunnelListener(opts.tunnelAddr, tlsConfig)
+	tunnelListener(opts.tunnelAddr, opts.authtoken, tlsConfig)
 }
