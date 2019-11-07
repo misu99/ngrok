@@ -15,35 +15,43 @@ Go version >= 1.11
 
 ## Build
 
-- ```
-  git clone https://github.com/misu99/ngrok.git
-  cd ngrok
-  
-  # 服务端
-  GOOS=linux GOARCH=amd64 make release-server
-  
-  # 客户端
-  # 32位linux客户端: 
-  GOOS=linux GOARCH=386 make release-client
-  
-  # 64位linux客户端: 
-  GOOS=linux GOARCH=amd64 make release-client
-  
-  #32位windows客户端: 
-  GOOS=windows GOARCH=386 make release-client
-  
-  #64位windows客户端: 
-  GOOS=windows GOARCH=amd64 make release-client
-  
-  #32位mac平台客户端:
-  GOOS=darwin GOARCH=386 make release-client
-  
-  #64位mac平台客户端:
-  GOOS=darwin GOARCH=amd64 make release-client
-  
-  #ARM平台linux客户端: 
-  GOOS=linux GOARCH=arm make release-client
-  ```
+- 编译可执行程序
+    ```
+      git clone https://github.com/misu99/ngrok.git
+      cd ngrok
+      
+      # 服务端
+      GOOS=linux GOARCH=amd64 make release-server
+      
+      # 客户端
+      # 32位linux客户端: 
+      GOOS=linux GOARCH=386 make release-client
+      
+      # 64位linux客户端: 
+      GOOS=linux GOARCH=amd64 make release-client
+      
+      #32位windows客户端: 
+      GOOS=windows GOARCH=386 make release-client
+      
+      #64位windows客户端: 
+      GOOS=windows GOARCH=amd64 make release-client
+      
+      #32位mac平台客户端:
+      GOOS=darwin GOARCH=386 make release-client
+      
+      #64位mac平台客户端:
+      GOOS=darwin GOARCH=amd64 make release-client
+      
+      #ARM平台linux客户端: 
+      GOOS=linux GOARCH=arm make release-client
+    ```
+
+- 编译docker镜像
+    ```
+      cd docker
+      docker-compose build
+      docker-compose up -d
+    ```
 
 ## Improve
 
