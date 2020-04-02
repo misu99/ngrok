@@ -6,6 +6,7 @@ ENV TUNNELADDR 4443
 ENV DOMAIN ""
 ENV TLSKEY /etc/ssl/snakeoil.key
 ENV TLSCRT /etc/ssl/snakeoil.crt
+ENV LOGLEVEL "WARNING"
 ENV AUTHTOKEN ""
 
 VOLUME /etc/ssl
