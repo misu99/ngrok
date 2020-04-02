@@ -26,7 +26,7 @@ if [ ! -f "$TLSCRT" ];then
 fi
 
 # 运行主程序
-ngrokd -httpAddr=:"$HTTPADDR" -httpsAddr=:"$HTTPSADDR" -tunnelAddr=:"$TUNNELADDR" -domain="$DOMAIN" -tlsKey="$TLSKEY" -tlsCrt="$TLSCRT" -loglevel="$LOGLEVEL" -authtoken="$AUTHTOKEN" &
+ngrokd -httpAddr=:"$HTTPADDR" -httpsAddr=:"$HTTPSADDR" -tunnelAddr=:"$TUNNELADDR" -domain="$DOMAIN" -tlsKey="$TLSKEY" -tlsCrt="$TLSCRT" -log-level="$LOGLEVEL" -authtoken="$AUTHTOKEN" &
 pid="$!"
 
 # 等待信号
